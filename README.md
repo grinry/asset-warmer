@@ -132,6 +132,7 @@ You can pass options to second parameter of Warmer function.
 
 | Options  | Description |
 | ------------- | ------------- |
+| preFlight |Sends `HEAD` request to get filesizes before starting downloding. Usefull when axact percentage of couple of assets needed. Do not use it if loading only one asset. Loading too many files because this will make more request and retrieve assets slower. Think if you really want excat percentage of downloads or can show only downloaded bytes etc. Default is `false`. |
 | appendWhenDone  | Automatically append js/css assets to dom `head` 						tag after ALL of assets are retrieved. Default is 						`true`  |
 | appendAtOnce`*`  | Automatically append js/css assets to dom `head` 						tag at once when asset is retrieved. Default is 						`false`  |
 | appendStyles  | Automatically append css assets to dom tag. 					Default is `true`. `appendWhenDone` or 					`appendAtOnce` must be true.  |

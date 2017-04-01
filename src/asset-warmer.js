@@ -15,6 +15,7 @@
         this.const = {
             VERSION: '0.0.1',
             STATUS: {
+                FLIGHT: 'flight',
                 PENDING: 'pending',
                 PROGRESS: 'progress',
                 FINISHED: 'finished',
@@ -38,6 +39,7 @@
 
         this.options = this._mergeOptions({
             byOrder: true,
+            preFlight: false,
             appendStyles: true,
             appendScripts: true,
             appendAtOnce: false,
@@ -77,6 +79,10 @@
     };
 
     Warmer.prototype._prepare = function (files) {
+        var status = this.const.STATUS.PENDING;
+        if (this.options.preFlight) {
+            status = this.const.STATUS.FLIGHT;
+        }
         if (!files || typeof files === 'undefined')
             throw 'asset-warmer: No files added to load!';
 
@@ -88,6 +94,7 @@
 
             if (temp_file.hasOwnProperty('src')) {
                 item.src = temp_file.src;
+                type = this.getFileExtension(temp_file.src);
             } else {
                 throw 'asset-warmer: File object doesn\'t have `src` property.';
             }
@@ -112,13 +119,14 @@
 
             if (typeof file === 'string') {
                 name = file.replace(/^.*[\\\/]/, '');
-                type = name.split('.').pop();
+                type = this.getFileExtension(name);
                 src = file;
             } else {
                 if (file.hasOwnProperty('src')) {
                     src = file.src;
+                    type = this.getFileExtension(file.src);
                 } else {
-                    console.log('asset-warmer: File object doesn\'t have `src` property.', src);
+                    console.warn('asset-warmer: File object doesn\'t have `src` property.', src);
                     return;
                 }
                 if (file.hasOwnProperty('name')) {
@@ -139,12 +147,28 @@
                 percentage: null,
                 knownLength: false,
                 type: type,
-                status: this.const.STATUS.PENDING
+                status: status
             });
         }
 
-        // this.dispatch('started', this.files);
-        this._begin();
+        if (this.options.preFlight) {
+            this._beginFlight();
+        } else {
+            this._begin();
+        }
+    };
+
+    Warmer.prototype._beginFlight = function() {
+        var _this = this;
+        var pending = this.files.filter(function(item) {
+            return item.status === _this.const.STATUS.FLIGHT;
+        });
+        if (pending.length) {
+            this._flightDownload(pending[0]);
+        } else {
+            // this.dispatch('finished_flight', this.files);
+            this._begin();
+        }
     };
 
     Warmer.prototype._begin = function() {
@@ -182,7 +206,7 @@
             file.status = _this.const.STATUS.PROGRESS;
             file.knownLength = $event.lengthComputable;
             file.loaded = $event.loaded;
-            file.total = $event.lengthComputable ? $event.total : file.total;
+            file.total = parseInt($event.lengthComputable ? $event.total : file.total);
             file.percentage = $event.lengthComputable ? _this.fixPercent(($event.loaded / $event.total * 100)) : 0;
 
             _this.dispatch('update', {
@@ -212,6 +236,38 @@
                 errorType: type
             });
             _this._begin();
+        }
+    };
+
+    Warmer.prototype._flightDownload = function(file) {
+        var xhr;
+        if (window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();
+        } else {
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xhr.onprogress = onProgress.bind(null, file, this);
+        xhr.addEventListener('load', onLoad.bind(null, file, this), false);
+        xhr.addEventListener('error', onFailed.bind(null, file, this, 'error'), false);
+        xhr.addEventListener('abort', onFailed.bind(null, file, this, 'abort'), false);
+        xhr.open('HEAD', file.src, true);
+        xhr.getResponseHeader('Content-Length');
+        xhr.send();
+
+        function onProgress(file, _this, $event) {
+            //
+        }
+        function onLoad(file, _this, $event) {
+            var contentLength = xhr.getResponseHeader('Content-Length');
+            file.status = _this.const.STATUS.PENDING;
+            if (contentLength) {
+                file.total = parseInt(contentLength);
+            }
+            _this._beginFlight();
+        }
+        function onFailed(file, _this, type, $event) {
+            _this._beginFlight();
         }
     };
 
@@ -249,7 +305,7 @@
     Warmer.prototype.bytesLoaded = function() {
         var size = 0;
         for (var i = 0; i<this.files.length; i++) {
-            size += this.files[i].loaded;
+            size += +this.files[i].loaded;
         }
         return size;
     };
@@ -257,7 +313,7 @@
     Warmer.prototype.bytesTotal = function() {
         var size = 0;
         for (var i = 0; i<this.files.length; i++) {
-            size += this.files[i].total;
+            size += +this.files[i].total;
         }
         return size;
     };
@@ -288,6 +344,10 @@
         if (value > 100)
             value = 100;
         return parseFloat(value).toFixed(3);
+    };
+
+    Warmer.prototype.getFileExtension = function (name) {
+        return name.split(/[?#]/)[0].split('.').pop();
     };
 
     // AMD support

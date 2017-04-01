@@ -2,7 +2,7 @@ var webpack = require("webpack");
 
 module.exports = {
     context: __dirname,
-    entry: "./src/index.js",
+    entry: "./src/asset-warmer.js",
     output: {
         path: __dirname,
         filename: "asset-warmer.min.js"

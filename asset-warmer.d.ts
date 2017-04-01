@@ -4,7 +4,7 @@ import EntryFile = warmer.EntryFile;
 declare function Warmer(files: EntryFile | string | Array<string | EntryFile>, options?: Options): warmer.Warmer;
 
 declare namespace warmer {
-    type FileStatus = 'pending' | 'progress' | 'finished' | 'failed';
+    type FileStatus = 'pending' | 'progress' | 'finished' | 'failed' | 'flight';
     type UpdateEventType = 'asset_progress' | 'asset_loaded' | 'asset_failed';
     type ProgressInfoResultType = 'finished' | 'progress';
     type EventType = 'update' | 'asset_appended' | 'finished' | 'appened';
