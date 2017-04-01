@@ -1,1 +1,8 @@
+*~
+.DS_Store
+/.idea
+/node_modules
+npm-debug.log*
 /docs
+webpack.config.js
+.npmignore
