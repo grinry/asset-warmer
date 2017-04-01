@@ -1,0 +1,32 @@
+{
+  "name": "asset-warmer",
+  "version": "0.0.1",
+  "description": "Script for preloading website with percentage progress.",
+  "main": "./asset-warmer.min.js",
+  "scripts": {
+    "webpack": "cross-env NODE_ENV=development webpack --progress --hide-modules",
+    "dev": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules",
+    "hmr": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
+    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiberzauras/asset-warmer.git"
+  },
+  "keywords": [
+    "javascript",
+    "assets",
+    "warmer"
+  ],
+  "author": "Rytis Grincevicius <public@kiberzauras.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kiberzauras/asset-warmer/issues"
+  },
+  "typings": "./asset-warmer.d.ts",
+  "homepage": "https://github.com/kiberzauras/asset-warmer#readme",
+  "devDependencies": {
+    "cross-env": "^4.0.0",
+    "webpack": "^2.3.2"
+  }
+}
