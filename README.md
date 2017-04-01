@@ -17,6 +17,12 @@ now its downloading etc. and make loading screen more lively.
 because they will see real progress of site being loading for sure.
 
 
+
+### Demo
+
+[https://kiberzauras.github.io/asset-warmer/](https://kiberzauras.github.io/asset-warmer/)
+
+
 ### Requirements
 
 * `required` Assets must be in the server where CORS enabled (You must be able to make ajax request to it). (localhost works, most of cdn also).
