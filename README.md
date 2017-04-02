@@ -46,7 +46,7 @@ It would be best if you would copy `node_modules/asset-warmer/asset-warmer.min.j
 	
 But you can use `require` of course.
 
-	const Warmer = require('asset-warmer');
+	const Warmer = require('asset-warmer/src/asset-warmer');
 	new Warmer(['vendors.js', 'extenstions.js', 'app.js']).on('update', e => {});
 	
 Just keep in mind that adding this package to your main javascript bundle doesnt make sense.
