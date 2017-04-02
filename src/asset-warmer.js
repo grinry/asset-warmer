@@ -3,17 +3,16 @@
  *
  * Package for warming up website assets.
  *
- * @version 0.0.1
+ * @version 0.0.4
  * @author Rytis Grincevicius <public@kiberzauras.com>
  * @licence MIT
  */
-
 (function (global) {
     'use strict';
 
     var Warmer = function(files, options) {
+        this.VERSION = '0.0.4';
         this.const = {
-            VERSION: '0.0.1',
             STATUS: {
                 FLIGHT: 'flight',
                 PENDING: 'pending',
@@ -68,7 +67,8 @@
         if (this.events.hasOwnProperty(eventName))
             this.events[eventName].callbacks.push(callback);
         else
-            console.warn('asset-warmer: Event `' + eventName + '` is not registered.')
+            console.warn('asset-warmer: Event `' + eventName + '` is not registered.');
+        return this;
     };
 
     Warmer.prototype._mergeOptions = function(origin, other) {
@@ -368,4 +368,5 @@
     if (typeof window !== 'undefined') {
         window.Warmer = Warmer;
     }
+
 })(this);

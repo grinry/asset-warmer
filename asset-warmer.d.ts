@@ -1,4 +1,3 @@
-// declare function Warmer(file: string, options?: warmer.Options): warmer.Warmer;
 import Options = warmer.Options;
 import EntryFile = warmer.EntryFile;
 declare function Warmer(files: EntryFile | string | Array<string | EntryFile>, options?: Options): warmer.Warmer;
@@ -10,7 +9,7 @@ declare namespace warmer {
     type EventType = 'update' | 'asset_appended' | 'finished' | 'appened';
 
     interface Warmer {
-        on(eventName: EventType, eventArgs: UpdateEvent | Array<File> | File): void;
+        on(eventName: EventType, eventArgs: UpdateEvent | Array<File> | File): Warmer;
     }
 
     interface Options {
