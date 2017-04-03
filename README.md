@@ -1,5 +1,7 @@
 # Asset-warmer
 
+[![npm version](https://badge.fury.io/js/asset-warmer.svg)](https://npmjs.org/package/asset-warmer)
+
 > This package helps to show percentage loader for 
 SPA websites while loading core assets.
 >
