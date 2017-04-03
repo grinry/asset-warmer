@@ -150,3 +150,7 @@ Options marked with `*` are non existing features in current version.
 * Warmer will send `update` event every time it will download some of asset.
 * You can use event to change loading screen as you like with got data.
 * When all assets retrieved, and there is css or js files in them - warmer will append them to the end of documents `head` tag.
+
+[![NPM](https://nodei.co/npm/asset-warmer.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/asset-warmer/)
+[![NPM](https://nodei.co/npm-dl/asset-warmer.png?months=3&height=2)](https://nodei.co/npm/asset-warmer/)
+
