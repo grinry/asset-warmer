@@ -20,42 +20,48 @@ because they will see real progress of site being loading for sure.
 
 
 
-### Demo
+## Demo
 
 [https://kiberzauras.github.io/asset-warmer/](https://kiberzauras.github.io/asset-warmer/)
 
 
-### Requirements
+## Requirements
 
 * `required` Assets must be in the server where CORS enabled (You must be able to make ajax request to it). (localhost works, most of cdn also).
 * `optional` Server should return `Content-Length` header of assets for better warmer experience. If You unable to use it, You will be able to write asset size manualy or use progress events without total size (percentage).
 
-### Install
+## Installing
+
+Using npm:
 
 `npm install asset-warmer --save-dev`
 
-### Usage
+Using cdn:
 
-It would be best if you would copy `node_modules/asset-warmer/asset-warmer.min.js` file in your public folder and add reference to it by script tag:
+`<script src="https://unpkg.com/asset-warmer@0.0.4/asset-warmer.min.js"></script>`
+
+## Usage
+
+It would be best if you would use cdnto add reference to it by script tag:
 
 	<body>
 		...
-		<script src="asset-loader.min.js"/>
+		<script src="https://unpkg.com/asset-warmer@0.0.4/asset-warmer.min.js"></script>
 		<script>
-		 new Warmer(['jquery.min.js', 'app.js']);
+		 new Warmer(['jquery.min.js', 'app.js']).on('update', function(e) {});
 		</script>
 	</body>
 	
-But you can use `require` of course.
+But you can use `npm` if needed.
 
-	const Warmer = require('asset-warmer/src/asset-warmer');
+	const Warmer = require('asset-warmer');
 	new Warmer(['vendors.js', 'extenstions.js', 'app.js']).on('update', e => {});
 	
 Just keep in mind that adding this package to your main javascript bundle doesnt make sense.
 
 You need to make another small bundle with asset warmer add it to your index.html file and remove all other assets from it. (leave them only in warmer array - it will be downloaded and appended).  	
 
-#### Initialization
+### Initialization
 
 If you want to warm-up single file just run:
 
@@ -84,7 +90,7 @@ create one from `src`. You can also pass `size` to set filesize in bytes, if pac
 not be able to retrieve it from server.
 
 
-#### Events
+### Events
 
 Update event, shows entire progress of assets.
 
@@ -119,7 +125,7 @@ Warmer also fires `asset_appended` and `appended` (for all) after assets are
 appended to DOM.
 
 
-#### Options
+### Options
 
 You can pass options to second parameter of Warmer function.
  By using options you can disable default behaviour such as auto asset appending to DOM.
@@ -143,7 +149,7 @@ You can pass options to second parameter of Warmer function.
 
 Options marked with `*` are non existing features in current version.
 
-### How it works?
+## How it works?
 
 * You pass array of assets to warmer in order needed.
 * Warmer one by one will retrieve assets needed and load it to browsers memory. 
