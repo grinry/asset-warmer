@@ -36,6 +36,10 @@ Using npm:
 
 `npm install asset-warmer --save-dev`
 
+Using bower:
+
+`bower install asset-warmer`
+
 Using cdn:
 
 `<script src="https://unpkg.com/asset-warmer@0.0.5/asset-warmer.min.js"></script>`
