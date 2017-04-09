@@ -1,0 +1,22 @@
+{
+  "name": "asset-warmer",
+  "description": "Script for preloading website with percentage progress.",
+  "main": "./src/asset-warmer.js",
+  "authors": [
+    "Rytis Grincevicius <public@kiberzauras.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "javascript",
+    "assets",
+    "warmer"
+  ],
+  "homepage": "https://github.com/kiberzauras/asset-warmer",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

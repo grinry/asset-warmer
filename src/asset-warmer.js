@@ -11,7 +11,7 @@
     'use strict';
 
     var Warmer = function(files, options) {
-        this.VERSION = '0.0.4';
+        this.VERSION = '0.0.5';
         this.const = {
             STATUS: {
                 FLIGHT: 'flight',

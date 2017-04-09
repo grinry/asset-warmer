@@ -38,7 +38,7 @@ Using npm:
 
 Using cdn:
 
-`<script src="https://unpkg.com/asset-warmer@0.0.4/asset-warmer.min.js"></script>`
+`<script src="https://unpkg.com/asset-warmer@0.0.5/asset-warmer.min.js"></script>`
 
 ## Usage
 
@@ -46,7 +46,7 @@ It would be best if you would use cdnto add reference to it by script tag:
 
 	<body>
 		...
-		<script src="https://unpkg.com/asset-warmer@0.0.4/asset-warmer.min.js"></script>
+		<script src="https://unpkg.com/asset-warmer@0.0.5/asset-warmer.min.js"></script>
 		<script>
 		 new Warmer(['jquery.min.js', 'app.js']).on('update', function(e) {});
 		</script>
