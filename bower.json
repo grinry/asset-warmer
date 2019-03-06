@@ -3,7 +3,7 @@
   "description": "Script for preloading website with percentage progress.",
   "main": "./src/asset-warmer.js",
   "authors": [
-    "Rytis Grincevicius <public@kiberzauras.com>"
+    "Rytis Grincevicius <rytis.grincevicius@gmail.com>"
   ],
   "license": "MIT",
   "keywords": [
@@ -11,7 +11,7 @@
     "assets",
     "warmer"
   ],
-  "homepage": "https://github.com/kiberzauras/asset-warmer",
+  "homepage": "https://github.com/grinry/asset-warmer",
   "ignore": [
     "**/.*",
     "node_modules",

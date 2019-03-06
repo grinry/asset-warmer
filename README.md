@@ -22,7 +22,7 @@ because they will see real progress of site being loading for sure.
 
 ## Demo
 
-[https://kiberzauras.github.io/asset-warmer/](https://kiberzauras.github.io/asset-warmer/)
+[https://grinry.github.io/asset-warmer/](https://grinry.github.io/asset-warmer/)
 
 
 ## Requirements
@@ -46,7 +46,7 @@ Using cdn:
 
 ## Usage
 
-It would be best if you would use cdnto add reference to it by script tag:
+It would be best if you would use cdn to add reference to it by script tag:
 
 	<body>
 		...

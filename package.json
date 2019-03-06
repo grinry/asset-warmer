@@ -1,6 +1,6 @@
 {
   "name": "asset-warmer",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Script for preloading website with percentage progress.",
   "main": "./src/asset-warmer",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kiberzauras/asset-warmer.git"
+    "url": "git+https://github.com/grinry/asset-warmer.git"
   },
   "keywords": [
     "javascript",
     "assets",
     "warmer"
   ],
-  "author": "Rytis Grincevicius <public@kiberzauras.com>",
+  "author": "Rytis Grincevicius <rytis.grincevicius@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kiberzauras/asset-warmer/issues"
@@ -26,7 +26,9 @@
   "typings": "./asset-warmer.d.ts",
   "homepage": "https://github.com/kiberzauras/asset-warmer#readme",
   "devDependencies": {
-    "cross-env": "^4.0.0",
-    "webpack": "^2.3.2"
+    "cross-env": "^5.2.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6"
   }
 }
